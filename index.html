@@ -39,6 +39,7 @@
   let player1fields = [];
   let player2fields = [];
   let winner = 0;
+  let winComb = [];
 
   const winCombs = [
     [1, 2, 3],
@@ -80,6 +81,7 @@
             counter++;
           }
           if (counter == 3) {
+            winComb = comb;
             winner = 1;
           }
         }
@@ -93,6 +95,7 @@
             counter++;
           }
           if (counter == 3) {
+            winComb = comb;
             winner = 2;
           }
         }
@@ -101,6 +104,9 @@
     if (winner > 0) {
       results.innerText = "Winner is player " + winner;
       player = 0;
+      for (let value of winComb) {
+        fields[value - 1].classList.add("comb");
+      }
     }
   };
 
