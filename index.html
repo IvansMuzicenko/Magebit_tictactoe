@@ -11,6 +11,7 @@
     <div class="page">
       <div class="game">
         <h1 class="game__results"></h1>
+        <h1>Player <span class="game__turn">1</span> turn</h1>
         <div class="game__area">
           <div class="game__field field1"><p></p></div>
           <div class="game__field field2"><p></p></div>
@@ -35,11 +36,13 @@
 <script>
   const fields = document.querySelectorAll(".game__field");
   const results = document.querySelector(".game__results");
+  const turn = document.querySelector(".game__turn");
   let player = 1;
   let player1fields = [];
   let player2fields = [];
   let winner = 0;
   let winComb = [];
+  let freeFields = [0, 1, 2, 3, 4, 5, 6, 7, 8];
 
   const winCombs = [
     [1, 2, 3],
@@ -61,6 +64,7 @@
     } else if (player == 2) {
       player = 1;
     }
+    turn.textContent = player;
   };
 
   const fill = function () {
@@ -69,6 +73,16 @@
     } else if (player == 2) {
       return "O";
     } else return "";
+  };
+  const deleteOcc = function (index) {
+    freeFields.splice(freeFields.indexOf(index), 1);
+  };
+
+  const botStep = function () {
+    if (player == 2) {
+      const randField = Math.floor(Math.random() * freeFields.length);
+      fields[freeFields[randField]].click();
+    }
   };
 
   const winCheck = function () {
@@ -118,9 +132,13 @@
         } else if (player == 2) {
           player2fields.push(index + 1);
         }
+        deleteOcc(index);
         this.firstChild.innerText = fill();
         winCheck();
         change();
+        if (winner == 0) {
+          botStep();
+        }
       }
     };
   });

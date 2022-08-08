@@ -23,6 +23,15 @@
 }
 .game__field {
   background: white;
+  display: flex;
+  align-items: center;
+}
+.game__field p {
+  font-size: 7vh;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  text-align: center;
 }
 .game__reset {
   padding: 10px;

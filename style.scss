@@ -22,6 +22,15 @@
   }
   &__field {
     background: white;
+    display: flex;
+    align-items: center;
+  }
+  &__field p {
+    font-size: 7vh;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    text-align: center;
   }
   &__reset {
     padding: 10px;
