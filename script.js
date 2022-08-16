@@ -117,10 +117,14 @@ fields.forEach((el, index) => {
     if (!this.firstChild.innerText) {
       if (player == 1) {
         player1fields.push(index + 1);
-        saveTurn(index + 1);
+        if (!restore) {
+          saveTurn(index + 1);
+        }
       } else if (player == 2) {
         player2fields.push(index + 1);
-        saveTurn(index + 1);
+        if (!restore) {
+          saveTurn(index + 1);
+        }
       }
       deleteOcc(index);
       this.firstChild.innerText = fill();
